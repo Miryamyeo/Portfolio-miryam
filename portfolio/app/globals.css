@@ -1,0 +1,92 @@
+@import "tailwindcss";
+
+@theme {
+  --color-bg: #0a0a0f;
+  --color-card: #12121a;
+  --color-card-hover: #16161f;
+  --color-accent: #7c6af7;
+  --color-accent-light: #a89cf8;
+  --color-accent-dim: #7c6af715;
+  --color-border: #2a2840;
+  --color-muted: #8b87a0;
+
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-float-slow: float 9s ease-in-out infinite;
+  --animate-float-reverse: float-reverse 7s ease-in-out infinite;
+  --animate-pulse-slow: pulse-slow 4s ease-in-out infinite;
+  --animate-spin-slow: spin 20s linear infinite;
+  --animate-fade-up: fade-up 0.6s ease forwards;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px) translateX(0px); }
+  33% { transform: translateY(-20px) translateX(10px); }
+  66% { transform: translateY(10px) translateX(-10px); }
+}
+
+@keyframes float-reverse {
+  0%, 100% { transform: translateY(0px) translateX(0px); }
+  33% { transform: translateY(15px) translateX(-15px); }
+  66% { transform: translateY(-10px) translateX(10px); }
+}
+
+@keyframes pulse-slow {
+  0%, 100% { opacity: 0.15; transform: scale(1); }
+  50% { opacity: 0.3; transform: scale(1.05); }
+}
+
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes role-in {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes grid-move {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(40px); }
+}
+
+html {
+  scroll-behavior: smooth;
+  background-color: #0a0a0f;
+}
+
+body {
+  background-color: #0a0a0f;
+  color: #e8e6f0;
+  font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+::selection { background: #7c6af730; color: #a89cf8; }
+
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: #0a0a0f; }
+::-webkit-scrollbar-thumb { background: #7c6af7; border-radius: 4px; }
+
+.role-animate {
+  animation: role-in 0.4s ease forwards;
+}
+
+.grid-bg {
+  background-image:
+    linear-gradient(rgba(124, 106, 247, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(124, 106, 247, 0.06) 1px, transparent 1px);
+  background-size: 40px 40px;
+  animation: grid-move 3s linear infinite;
+}
+
+@keyframes rotateBorder {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
