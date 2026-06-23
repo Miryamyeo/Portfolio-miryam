@@ -1,152 +1,283 @@
 "use client";
 import { useEffect, useState } from "react";
-
-const roles = [
-  "Développeuse Full Stack",
-  "React & Next.js",
-  "React Native",
-  "Laravel & NestJS",
-];
+import Image from "next/image";
+import { TypeAnimation } from "react-type-animation";
 
 export default function Hero() {
-  const [index, setIndex] = useState(0);
-  const [visible, setVisible] = useState(true);
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setVisible(false);
-      setTimeout(() => {
-        setIndex(i => (i + 1) % roles.length);
-        setVisible(true);
-      }, 400);
-    }, 2800);
-    return () => clearInterval(interval);
+    const onMove = (e: MouseEvent) => {
+      setMousePos({
+        x: (e.clientX / window.innerWidth - 0.5) * 12,
+        y: (e.clientY / window.innerHeight - 0.5) * 12,
+      });
+    };
+    window.addEventListener("mousemove", onMove);
+    return () => window.removeEventListener("mousemove", onMove);
   }, []);
 
   return (
     <section
       id="about"
-      className="relative min-h-screen flex items-center overflow-hidden"
+      className="relative min-h-screen flex items-end overflow-hidden"
+      style={{ background: "#000" }}
     >
-      {/* Grille animée */}
-      <div className="absolute inset-0 grid-bg opacity-60 pointer-events-none" />
+      {/* ── Étoiles animées (mix blanc + turquoise) ── */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        {Array.from({ length: 60 }).map((_, i) => {
+          const isTeal = i % 3 === 0;
+          return (
+            <div
+              key={i}
+              className="absolute rounded-full"
+              style={{
+                width: Math.random() * 2.5 + 0.8 + "px",
+                height: Math.random() * 2.5 + 0.8 + "px",
+                top: Math.random() * 72 + "%",
+                left: Math.random() * 100 + "%",
+                opacity: Math.random() * 0.5 + 0.1,
+                background: isTeal ? "#00e5c3" : "#fff",
+                animation: `pulse-slow ${3 + Math.random() * 4}s ease-in-out infinite`,
+                animationDelay: Math.random() * 4 + "s",
+              }}
+            />
+          );
+        })}
+      </div>
 
-      {/* Orbes flottantes */}
+      {/* ── Orbe turquoise principal ── */}
       <div
-        className="absolute top-1/4 left-1/4 w-96 h-96 rounded-full pointer-events-none"
+        className="absolute pointer-events-none"
         style={{
-          background: "radial-gradient(circle, rgba(124,106,247,0.18) 0%, transparent 70%)",
-          animation: "float 6s ease-in-out infinite",
-          filter: "blur(40px)",
-        }}
-      />
-      <div
-        className="absolute bottom-1/3 right-1/4 w-80 h-80 rounded-full pointer-events-none"
-        style={{
-          background: "radial-gradient(circle, rgba(168,156,248,0.12) 0%, transparent 70%)",
-          animation: "float-reverse 9s ease-in-out infinite",
-          filter: "blur(50px)",
-        }}
-      />
-      <div
-        className="absolute top-1/2 right-1/3 w-64 h-64 rounded-full pointer-events-none"
-        style={{
-          background: "radial-gradient(circle, rgba(99,86,230,0.1) 0%, transparent 70%)",
-          animation: "float 7s ease-in-out infinite 2s",
-          filter: "blur(30px)",
+          top: "4%",
+          right: "4%",
+          width: "500px",
+          height: "500px",
+          background: "radial-gradient(circle, #00e5c3 0%, #009e88 30%, transparent 70%)",
+          borderRadius: "50%",
+          filter: "blur(70px)",
+          opacity: 0.25,
+          transform: `translate(${mousePos.x * 0.4}px, ${mousePos.y * 0.4}px)`,
+          transition: "transform 0.8s ease",
         }}
       />
 
-      {/* Particules décoratives */}
-      {[
-        { top: "20%", left: "10%", delay: "0s", size: "w-1 h-1" },
-        { top: "60%", left: "5%", delay: "1s", size: "w-1.5 h-1.5" },
-        { top: "30%", right: "8%", delay: "0.5s", size: "w-1 h-1" },
-        { top: "70%", right: "15%", delay: "1.5s", size: "w-1 h-1" },
-        { top: "45%", left: "88%", delay: "2s", size: "w-2 h-2" },
-      ].map((p, i) => (
-        <div
-          key={i}
-          className={`absolute ${p.size} rounded-full bg-accent pointer-events-none`}
+      {/* ── Orbe sombre central ── */}
+      <div
+        className="absolute pointer-events-none"
+        style={{
+          top: "-10%",
+          left: "30%",
+          width: "700px",
+          height: "400px",
+          background: "radial-gradient(ellipse, #000 0%, transparent 65%)",
+          filter: "blur(80px)",
+          transform: `translate(${mousePos.x * 0.2}px, ${mousePos.y * 0.2}px)`,
+          transition: "transform 1s ease",
+        }}
+      />
+
+      {/* ── Lueur turquoise bas ── */}
+      <div
+        className="absolute pointer-events-none"
+        style={{
+          bottom: "18%",
+          right: "18%",
+          width: "340px",
+          height: "340px",
+          background: "linear-gradient(to top, rgba(0,229,195,0.18) 0%, transparent 100%)",
+          filter: "blur(55px)",
+          animation: "float 8s ease-in-out infinite",
+        }}
+      />
+
+      {/* ── Lueur bas de page ── */}
+      <div
+        className="absolute pointer-events-none"
+        style={{
+          bottom: "0",
+          left: "0",
+          right: "0",
+          height: "50%",
+          background: "linear-gradient(to top, rgba(0,229,195,0.06) 0%, transparent 100%)",
+        }}
+      />
+    {/* ── Tunnel futuriste interactif ── */}
+<div className="absolute inset-0 flex items-center justify-center pointer-events-none overflow-hidden">
+  {Array.from({ length: 10 }).map((_, i) => (
+    <div
+      key={i}
+      className="absolute rounded-full"
+      style={{
+        width: `${220 + i * 90}px`,
+        height: `${220 + i * 90}px`,
+        border: "1.5px solid rgba(0,229,195,0.15)",
+        boxShadow: `
+          0 0 ${10 + i * 2}px rgba(0,229,195,0.15),
+          inset 0 0 ${15 + i * 2}px rgba(0,229,195,0.08)
+        `,
+        transform: `
+          perspective(900px)
+          rotateX(72deg)
+          translateX(${mousePos.x * (i * 0.12)}px)
+          translateY(${i * 12 + mousePos.y * (i * 0.08)}px)
+          rotateZ(${mousePos.x * 0.15}deg)
+          scale(${1 - i * 0.02})
+        `,
+        transition: "transform 0.3s ease-out",
+        animation: `tunnelMove ${6 + i * 0.4}s linear infinite`,
+        animationDelay: `${i * 0.3}s`,
+      }}
+    />
+  ))}
+</div>
+      {/* ── Photo ── */}
+      <div className="absolute inset-y-0 right-0 w-full md:w-[55%] overflow-hidden pointer-events-none">
+        <Image
+          src="/DAN_4511-removebg-preview.png"
+          alt="Miryam Yeo"
+          fill
+          priority
+          className="object-cover object-top"
           style={{
-            top: p.top,
-            left: (p as any).left,
-            right: (p as any).right,
-            background: "#7c6af7",
-            animation: `pulse-slow 4s ease-in-out infinite`,
-            animationDelay: p.delay,
+            transform: `translate(${mousePos.x * 0.8}px, ${mousePos.y * 0.8}px) scale(1.05)`,
+            animation: "floatPhoto 6s ease-in-out infinite",
+            transition: "transform 0.8s ease",
+            filter: "drop-shadow(0 20px 50px rgba(0,229,195,0.4))",
           }}
         />
-      ))}
 
-      {/* Contenu */}
-      <div className="relative z-10 w-full max-w-4xl mx-auto px-6 py-32">
-        <p
-          className="text-sm font-semibold tracking-widest mb-5"
-          style={{ color: "#7c6af7", letterSpacing: "0.18em" }}
-        >
-          BONJOUR, JE SUIS
-        </p>
-
-        <h1
-          className="font-black leading-none mb-4"
+        {/* Dégradé gauche */}
+        <div
+          className="absolute inset-0"
           style={{
-            fontSize: "clamp(2.8rem, 9vw, 5.5rem)",
+            background: "linear-gradient(to right, #000 0%, transparent 55%)",
+          }}
+        />
+
+        {/* Dégradé bas */}
+        <div
+          className="absolute inset-0"
+          style={{
+            background: "linear-gradient(to top, #000 0%, transparent 40%)",
+          }}
+        />
+
+        {/* Lueur turquoise sous photo */}
+        <div
+          className="absolute bottom-0 left-1/2 -translate-x-1/2"
+          style={{
+            width: "360px",
+            height: "360px",
+            background: "radial-gradient(circle, rgba(0,229,195,0.3) 0%, transparent 70%)",
+            filter: "blur(55px)",
+            animation: "pulseGlow 4s ease-in-out infinite",
+          }}
+        />
+      </div>
+
+      {/* ── Dégradé bas de page ── */}
+      <div
+        className="absolute bottom-0 left-0 right-0 h-48 pointer-events-none"
+        style={{
+          background: "linear-gradient(to top, #000 0%, transparent 100%)",
+        }}
+      />
+
+      {/* ── Contenu texte ── */}
+      <div className="relative z-10 w-full px-8 md:px-16 pb-16 md:pb-20">
+
+        {/* Grand nom */}
+        <h1
+          className="font-black leading-none mb-6 select-none"
+          style={{
+            fontSize: "clamp(4rem, 13vw, 11rem)",
             letterSpacing: "-0.04em",
-            color: "#e8e6f0",
+            color: "#fff",
+            lineHeight: 0.92,
+            textShadow: "0 0 80px rgba(0,229,195,0.15)",
           }}
         >
-          Yeo Canidanan
+          Yeo
           <br />
-          <span style={{ color: "#a89cf8" }}>Miryam</span>
+          <span style={{ color: "#d0faf4" }}>Miryam</span>
         </h1>
 
-        {/* Rôle animé */}
-        <div className="h-10 mb-6 overflow-hidden">
-          <p
-            key={index}
-            className="role-animate text-xl font-medium"
-            style={{
-              color: "#8b87a0",
-              fontSize: "clamp(1rem, 3vw, 1.4rem)",
-              opacity: visible ? 1 : 0,
-              transition: "opacity 0.3s",
-            }}
-          >
-            ▸ {roles[index]}
-          </p>
+        {/* Séparateur + rôle animé */}
+        <div className="flex items-center gap-4 mb-5">
+          <div className="h-px w-8" style={{ background: "#00e5c3" }} />
+          <TypeAnimation
+            sequence={[
+              "Développeuse Full Stack", 2000,
+              "React & Next.js", 2000,
+              "React Native", 2000,
+              "Laravel & NestJS", 2000,
+            ]}
+            speed={50}
+            repeat={Infinity}
+            className="text-xs font-semibold tracking-widest uppercase"
+            style={{ color: "#00e5c3" }}
+          />
         </div>
 
+        {/* Bio */}
         <p
-          className="mb-10 leading-relaxed max-w-xl"
-          style={{ color: "#8b87a0", fontSize: "1rem" }}
+          className="mb-8 leading-relaxed text-white max-w-sm text-sm md:text-base"
         >
-          Étudiante en Licence 3 à l'UVCI et à l'Epitech Coding Academy (promo 2026),
-          je suis développeuse full stack passionnée par la création d'applications web et mobiles.
-          Basée à Abidjan, je construis des projets concrets allant du mobile avec React Native
-          aux plateformes web avec Next.js et Laravel.
+          Étudiante Epitech & UVCI (promo 2026), je construis des apps web
+          et mobiles qui résolvent de vrais problèmes — basée à Abidjan.
         </p>
 
-        <div className="flex flex-wrap gap-4">
-          <button
-            onClick={() => document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" })}
-            className="px-7 py-3 rounded-lg font-semibold text-sm transition-all duration-200 hover:opacity-80 active:scale-95"
-            style={{ background: "#7c6af7", color: "#fff" }}
-          >
-            Voir mes projets
-          </button>
+        {/* CTA */}
+        <div className="flex flex-wrap gap-4 items-center">
           <button
             onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
-            className="px-7 py-3 rounded-lg font-semibold text-sm transition-all duration-200 hover:opacity-80 active:scale-95"
+            className="flex items-center gap-3 px-6 py-3 rounded-full font-semibold text-sm transition-all duration-200 hover:gap-4"
             style={{
-              background: "transparent",
-              color: "#a89cf8",
-              border: "1px solid #7c6af7",
+              background: "#00e5c3",
+              color: "#000",
+              border: "none",
+              cursor: "pointer",
+              boxShadow: "0 0 24px rgba(0,229,195,0.35)",
+            }}
+            onMouseEnter={e => {
+              e.currentTarget.style.background = "#00fff3";
+              e.currentTarget.style.boxShadow = "0 0 40px rgba(0,229,195,0.6)";
+            }}
+            onMouseLeave={e => {
+              e.currentTarget.style.background = "#00e5c3";
+              e.currentTarget.style.boxShadow = "0 0 24px rgba(0,229,195,0.35)";
             }}
           >
             Me contacter
+            <span className="text-base">→</span>
+          </button>
+
+          <button
+            onClick={() => document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" })}
+            className="text-sm font-medium transition-colors duration-200 text-cyan-400"
+            style={{
+              background: "none",
+              border: "none",
+              cursor: "pointer",
+              textDecoration: "underline",
+              textUnderlineOffset: "4px",
+            }}
+            onMouseEnter={e => (e.currentTarget.style.color = "#00e5c3")}
+            onMouseLeave={e => (e.currentTarget.style.color = "#3a5552")}
+          >
+            Voir mes projets
           </button>
         </div>
+      </div>
+
+      {/* ── Label coin ── */}
+      <div
+        className="absolute top-24 right-8 text-xs font-semibold tracking-widest"
+        style={{ color: "#1a2e2c" }}
+      >
+        DARK <span className="text-cyan-400">/ MODE</span>
       </div>
     </section>
   );

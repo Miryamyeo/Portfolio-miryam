@@ -1,69 +1,112 @@
 "use client";
 
-const links = [
-  { label: "GitHub", icon: "🐙", href: "https://github.com/ton-username" },
-  { label: "LinkedIn", icon: "💼", href: "https://linkedin.com/in/ton-profil" },
-  { label: "Email", icon: "✉️", href: "mailto:ton@email.com" },
-];
+import Image from "next/image";
+import { FaInstagram, FaLinkedinIn, FaBehance } from "react-icons/fa";
+import { ChevronUp } from "lucide-react";
 
-export default function Contact() {
+export default function ContactPage() {
   return (
-    <section id="contact" className="py-28 pb-32 px-6 max-w-4xl mx-auto">
-      <p
-        className="text-xs font-semibold tracking-widest mb-2"
-        style={{ color: "#7c6af7", letterSpacing: "0.18em" }}
-      >
-        CONTACT
-      </p>
-      <h2
-        className="font-black mb-4"
-        style={{ fontSize: "clamp(2rem, 5vw, 3rem)", letterSpacing: "-0.03em", color: "#e8e6f0" }}
-      >
-        Travaillons
-        <br />
-        <span style={{ color: "#a89cf8" }}>ensemble</span>
-      </h2>
-      <p className="mb-12 max-w-md leading-relaxed" style={{ color: "#8b87a0", fontSize: "1rem" }}>
-        Disponible pour des stages, projets freelance ou collaborations académiques.
-        N'hésite pas à me contacter !
-      </p>
+    <main className="min-h-screen bg-black text-white overflow-hidden relative">
 
-      <div className="flex flex-wrap gap-3">
-        {links.map(l => (
-          <a
-            key={l.label}
-            href={l.href}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center gap-2.5 px-5 py-3 rounded-xl text-sm font-medium no-underline transition-all duration-200"
-            style={{
-              background: "#12121a",
-              border: "1px solid #2a2840",
-              color: "#e8e6f0",
-            }}
-            onMouseEnter={e => {
-              (e.currentTarget as HTMLAnchorElement).style.borderColor = "#7c6af7";
-              (e.currentTarget as HTMLAnchorElement).style.color = "#a89cf8";
-            }}
-            onMouseLeave={e => {
-              (e.currentTarget as HTMLAnchorElement).style.borderColor = "#2a2840";
-              (e.currentTarget as HTMLAnchorElement).style.color = "#e8e6f0";
-            }}
-          >
-            <span>{l.icon}</span>
-            {l.label}
-            <span className="text-xs" style={{ color: "#5a5670" }}>(à remplir)</span>
-          </a>
-        ))}
-      </div>
+      {/* Glow */}
+      <div className="absolute top-56 left-[35%] w-5 h-5 rounded-full bg-cyan-400 blur-sm shadow-[0_0_30px_#00e5ff]" />
 
-      <div
-        className="mt-20 pt-6 flex justify-between flex-wrap gap-3 text-xs"
-        style={{ borderTop: "1px solid #2a2840", color: "#5a5670" }}
-      >
-        <span>© 2024 Yeo Canidanan Miryam</span>
-        <span>Abidjan, Côte d'Ivoire 🇨🇮</span>
-      </div>
-    </section>
+      {/* Hero */}
+      <section className="pt-40 text-center">
+
+        <h1 className="text-8xl md:text-9xl font-bold mt-4">
+          CONTACT
+        </h1>
+
+        <div className="flex flex-wrap justify-center gap-5 mt-10">
+          <div className="px-8 py-4 rounded-full border border-zinc-800">
+            0584625515
+          </div>
+
+          <div className="px-8 py-4 rounded-full border border-zinc-800">
+            yeomiryam6@gmail.com
+          </div>
+        </div>
+      </section>
+
+      {/* Contenu */}
+      <section className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-20 px-10 mt-28 pb-20">
+
+        {/* Texte */}
+        <div>
+          <h2 className="text-5xl font-semibold text-cyan-300 mb-8">
+            Un besoin ?
+          </h2>
+
+          <p className="text-zinc-300 text-lg leading-9">
+            Si vous avez un projet ou des besoins en Web Design,
+            Direction Artistique ou encore en Motion Design,
+            n'hésitez pas à me contacter !
+          </p>
+
+          <p className="text-zinc-300 text-lg leading-9 mt-8">
+            Nous échangerons par mail dans un premier temps
+            puis sur WhatsApp afin de faciliter l'échange.
+          </p>
+
+          <div className="mt-14 text-zinc-500 italic leading-8">
+            Traitement des données personnelles.
+            <br />
+            Conformément aux dispositions des articles
+            relatifs à l'informatique et aux libertés.
+          </div>
+        </div>
+
+        {/* Formulaire */}
+        <form className="space-y-5">
+
+          <input
+            type="text"
+            placeholder="Prénom *"
+            className="w-full bg-transparent border border-zinc-800 rounded-xl p-5 outline-none focus:border-cyan-400 transition"
+          />
+
+          <input
+            type="text"
+            placeholder="Nom *"
+            className="w-full bg-transparent border border-zinc-800 rounded-xl p-5 outline-none focus:border-cyan-400 transition"
+          />
+
+          <input
+            type="text"
+            placeholder="Nom de l'entreprise / du projet"
+            className="w-full bg-transparent border border-zinc-800 rounded-xl p-5 outline-none focus:border-cyan-400 transition"
+          />
+
+          <input
+            type="email"
+            placeholder="Email *"
+            className="w-full bg-transparent border border-zinc-800 rounded-xl p-5 outline-none focus:border-cyan-400 transition"
+          />
+
+          <select className="w-full bg-black border border-zinc-800 rounded-xl p-5 outline-none focus:border-cyan-400 transition">
+            <option>Choisissez votre prestation *</option>
+            <option>Développement Web</option>
+            <option>UI / UX Design</option>
+            <option>Application Mobile</option>
+          </select>
+
+          <textarea
+            rows={6}
+            placeholder="Faites parler votre imagination ! *"
+            className="w-full bg-transparent border border-zinc-800 rounded-xl p-5 outline-none focus:border-cyan-400 transition"
+          />
+
+          <button className="px-10 py-5 rounded-full bg-cyan-400 text-black font-semibold hover:scale-105 transition">
+            Envoyer
+          </button>
+        </form>
+      </section>
+
+      {/* Scroll top */}
+      <button className="fixed bottom-10 right-10 w-14 h-14 rounded-full border border-zinc-700 flex items-center justify-center hover:border-cyan-400 transition">
+        <ChevronUp />
+      </button>
+    </main>
   );
 }

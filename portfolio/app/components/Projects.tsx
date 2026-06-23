@@ -1,261 +1,153 @@
 "use client";
-import { useState } from "react";
+
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Pagination, Autoplay, Navigation } from "swiper/modules";
+
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
 
 const projects = [
   {
     name: "TrellApp",
-    type: "Mobile",
+    image: "/projects/trellapp.png",
+    type: "Application Mobile",
     year: "2024",
-    desc: "Application mobile de gestion de tâches intégrant l'API Trello via OAuth. Développée avec React Native, Expo Router et NativeWind.",
-    tags: ["React Native", "Expo", "OAuth", "TypeScript"],
-    accent: "#7c6af7",
-    num: "01",
-    github: "#",
+    desc: "Application de gestion de tâches utilisant l'API Trello.",
+    tags: ["React Native", "Expo", "TypeScript"],
+    demoUrl: "https://trellapp.vercel.app",
+    githubUrl: "https://github.com/username/trellapp",
   },
   {
-    name: "TEMAFlix",
-    type: "Web App",
-    year: "2024",
-    desc: "Plateforme de streaming style Netflix connectée à l'API TMDB et un backend NestJS.",
-    tags: ["Next.js", "NestJS", "MongoDB", "TMDB API"],
-    accent: "#e8a045",
-    num: "02",
-    github: "#",
+    name: "Portfolio",
+    image: "/projects/portfolio.png",
+    type: "Site Web",
+    year: "2025",
+    desc: "Portfolio moderne développé avec Next.js.",
+    tags: ["Next.js", "Tailwind", "Framer Motion"],
+    demoUrl: "https://portfolio.vercel.app",
   },
   {
-    name: "EduHeures",
-    type: "Web App",
-    year: "2024",
-    desc: "Système de gestion académique avec authentification Fortify et dashboard Blade.",
-    tags: ["Laravel", "MySQL", "Merise", "Tailwind CSS"],
-    accent: "#3db87a",
-    num: "03",
-    github: "#",
+    name: "YOWL",
+    image: "YOWL.jpeg",
+    type: "Application Web",
+    year: "2025",
+    desc: "Tableau de bord analytique avec graphiques et statistiques.",
+    tags: ["React", "Chart.js", "API"],
+    demoUrl: "https://dashboard.vercel.app",
   },
   {
-    name: "AVEC Platform",
-    type: "Site vitrine",
-    year: "2024",
-    desc: "Site pour la diaspora africaine souhaitant s'installer à Abidjan.",
-    tags: ["HTML", "CSS", "Accessibilité", "Responsive"],
-    accent: "#e06b8b",
-    num: "04",
-    github: "#",
-  },
-  {
-    name: "Dashboard Widgets",
-    type: "Web App",
-    year: "2024",
-    desc: "Dashboard style Netvibes avec widgets configurables.",
-    tags: ["React", "Laravel", "Docker", "MySQL"],
-    accent: "#4fa8d8",
-    num: "05",
-    github: "#",
+    name: "DOMINA",
+    image: "/image.png",
+    type: "Site de parainage",
+    year: "2025",
+    desc: "Plateforme moderne de vente de vêtements avec une expérience utilisateur fluide.",
+    tags: ["Html","javascript", "Tailwind CSS"],
+    demoUrl: "https://hhhhhhh-h09.github.io/DOMINA-1/",
   },
 ];
 
-export default function Projects() {
-  const [hovered, setHovered] = useState<number | null>(null);
-
+export default function ProjectsCarousel() {
   return (
-    <section id="projects" className="py-28 px-6 max-w-5xl mx-auto">
-      {/* Titre */}
-      <p
-        className="text-xs font-semibold tracking-widest mb-2"
-        style={{ color: "#7c6af7" }}
-      >
-        PROJETS
-      </p>
+    <section
+      id="projects"
+      className="py-24 bg-black text-white overflow-hidden"
+    >
+      <div className="max-w-7xl mx-auto px-6">
+        <div className="text-center mb-16">
+          <p className="text-cyan-400 uppercase tracking-[0.3em] text-sm mb-3">
+            Portfolio
+          </p>
 
-      <div className="flex items-end justify-between mb-16 flex-wrap gap-4">
-        <h2
-          className="font-black leading-none"
-          style={{
-            fontSize: "clamp(2rem,5vw,3rem)",
-            color: "#e8e6f0",
+          <h2 className="text-5xl md:text-7xl font-bold">
+            Mes <span className="text-cyan-400">Projets</span>
+          </h2>
+        </div>
+
+        <Swiper
+          modules={[Pagination, Navigation, Autoplay]}
+          spaceBetween={25}
+          navigation
+          pagination={{ clickable: true }}
+          autoplay={{
+            delay: 3500,
+            disableOnInteraction: false,
           }}
+          loop
+          breakpoints={{
+            0: {
+              slidesPerView: 1,
+            },
+            768: {
+              slidesPerView: 2,
+            },
+            1200: {
+              slidesPerView: 3,
+            },
+          }}
+          className="pb-16"
         >
-          Ce que j'ai
-          <br />
-          <span style={{ color: "#a89cf8" }}>
-            construit
-          </span>
-        </h2>
+          {projects.map((project, index) => (
+            <SwiperSlide key={index}>
+              <div className="group h-full rounded-3xl border border-cyan-500/20 bg-white/5 backdrop-blur-md overflow-hidden hover:border-cyan-400 transition-all duration-500 hover:-translate-y-2">
+                
+                {/* Image */}
+                <div className="overflow-hidden">
+                  <img
+                    src={project.image}
+                    alt={project.name}
+                    className="w-full h-56 object-cover transition duration-700 group-hover:scale-110"
+                  />
+                </div>
 
-        <p style={{ color: "#8b87a0" }}>
-          {projects.length} projets
-        </p>
-      </div>
+                {/* Contenu */}
+                <div className="p-6">
+                  <div className="flex justify-between items-center mb-4">
+                    <span className="text-cyan-400 text-sm font-medium">
+                      {project.type}
+                    </span>
 
-      <div className="flex flex-col gap-8">
-        {projects.map((p, i) => (
-          <div
-            key={p.name}
-            onMouseEnter={() => setHovered(i)}
-            onMouseLeave={() => setHovered(null)}
-            className="relative rounded-3xl p-[2px] overflow-hidden transition-all duration-500"
-            style={{
-              background:
-                hovered === i
-                  ? `linear-gradient(
-                      135deg,
-                      ${p.accent},
-                      #ffffff,
-                      ${p.accent}
-                    )`
-                  : "#2a2840",
-              boxShadow:
-                hovered === i
-                  ? `0 0 30px ${p.accent}40`
-                  : "none",
-            }}
-          >
-            {/* Animation */}
-            <div
-              className={`absolute inset-0 opacity-40 ${
-                hovered === i ? "animate-spin" : ""
-              }`}
-              style={{
-                background: `conic-gradient(
-                  from 0deg,
-                  transparent,
-                  ${p.accent},
-                  transparent
-                )`,
-              }}
-            />
-
-            {/* Contenu */}
-            <div
-              className="relative rounded-3xl p-8 backdrop-blur-xl"
-              style={{
-                background: "#11111b",
-              }}
-            >
-              <div className="flex items-start gap-6">
-                {/* Numéro */}
-                <span
-                  className="font-mono text-sm font-bold"
-                  style={{
-                    color:
-                      hovered === i
-                        ? p.accent
-                        : "#4a4860",
-                  }}
-                >
-                  {p.num}
-                </span>
-
-                {/* Informations */}
-                <div className="flex-1">
-                  <div className="flex flex-wrap justify-between gap-4 mb-4">
-                    <div className="flex items-center gap-3 flex-wrap">
-                      <h3
-                        className="text-2xl font-bold transition-all"
-                        style={{
-                          color:
-                            hovered === i
-                              ? "#ffffff"
-                              : "#d4d2e3",
-                        }}
-                      >
-                        {p.name}
-                      </h3>
-
-                      <span
-                        className="px-3 py-1 rounded-full text-xs font-medium"
-                        style={{
-                          background: `${p.accent}20`,
-                          color: p.accent,
-                          border: `1px solid ${p.accent}40`,
-                        }}
-                      >
-                        {p.type}
-                      </span>
-                    </div>
-
-                    <span
-                      style={{
-                        color: "#8b87a0",
-                      }}
-                    >
-                      {p.year}
+                    <span className="text-white/60 text-sm">
+                      {project.year}
                     </span>
                   </div>
 
-                  <p
-                    className="leading-relaxed mb-5"
-                    style={{
-                      color:
-                        hovered === i
-                          ? "#a8a4bc"
-                          : "#73708a",
-                    }}
-                  >
-                    {p.desc}
+                  <h3 className="text-2xl font-bold mb-3">
+                    {project.name}
+                  </h3>
+
+                  <p className="text-gray-300 mb-5">
+                    {project.desc}
                   </p>
 
-                  {/* Tags */}
-                  <div className="flex flex-wrap gap-2">
-                    {p.tags.map((tag) => (
+                  {/* Technologies */}
+                  <div className="flex flex-wrap gap-2 mb-6">
+                    {project.tags.map((tag, i) => (
                       <span
-                        key={tag}
-                        className="px-3 py-1 rounded-lg text-xs font-mono transition-all"
-                        style={{
-                          background:
-                            hovered === i
-                              ? `${p.accent}20`
-                              : "#1a1a25",
-                          color:
-                            hovered === i
-                              ? p.accent
-                              : "#7a7694",
-                          border: `1px solid ${
-                            hovered === i
-                              ? `${p.accent}40`
-                              : "#2a2840"
-                          }`,
-                        }}
+                        key={i}
+                        className="px-3 py-1 rounded-full border border-cyan-500/40 bg-cyan-500/10 text-cyan-300 text-xs"
                       >
                         {tag}
                       </span>
                     ))}
                   </div>
-                </div>
 
-                {/* Flèche */}
-                <div
-                  className="transition-all duration-300"
-                  style={{
-                    color:
-                      hovered === i
-                        ? p.accent
-                        : "#4a4860",
-                    transform:
-                      hovered === i
-                        ? "translateX(8px)"
-                        : "translateX(0)",
-                  }}
-                >
-                  <svg
-                    width="24"
-                    height="24"
-                    viewBox="0 0 20 20"
-                    fill="none"
-                  >
-                    <path
-                      d="M4 10h12M10 4l6 6-6 6"
-                      stroke="currentColor"
-                      strokeWidth="1.8"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </svg>
+                  {/* Boutons */}
+                  <div className="flex gap-3">
+                    <a
+                      href={project.demoUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex-1 text-center px-4 py-3 rounded-xl bg-cyan-500 hover:bg-cyan-600 transition font-semibold"
+                    >
+                      Voir le projet
+                    </a>
+                  </div>
                 </div>
               </div>
-            </div>
-          </div>
-        ))}
+            </SwiperSlide>
+          ))}
+        </Swiper>
       </div>
     </section>
   );

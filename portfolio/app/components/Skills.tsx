@@ -1,222 +1,144 @@
 "use client";
 
-import { useState } from "react";
-
 const categories = [
   {
+    id: "T.01",
     title: "Frontend",
-    icon: "🖥️",
+    stars: "8 STARS",
     skills: [
       "React",
       "Next.js",
-      "HTML / CSS",
-      "Tailwind CSS",
+      "Vue.js",
       "TypeScript",
+      "Tailwind CSS",
+      "HTML",
+      "CSS",
+      "Responsive Design",
     ],
-    color: "#7c6af7",
   },
   {
+    id: "T.02",
+    title: "Backend",
+    stars: "5 STARS",
+    skills: [
+      "Laravel",
+      "NestJS",
+      "PHP",
+      "Node.js",
+      "REST API",
+      "MySQL",
+    ],
+  },
+  {
+    id: "T.03",
     title: "Mobile",
-    icon: "📱",
+    stars: "7 STARS",
     skills: [
       "React Native",
       "Expo",
       "NativeWind",
       "Expo Router",
+      "Android",
     ],
-    color: "#4fa8d8",
   },
   {
-    title: "Backend",
-    icon: "⚙️",
-    skills: [
-      "Laravel",
-      "NestJS",
-      "Node.js",
-      "REST API",
-      "MySQL",
-      "MongoDB",
-    ],
-    color: "#3db87a",
-  },
-  {
+    id: "T.04",
     title: "Outils",
-    icon: "🛠️",
+    stars: "9 STARS",
     skills: [
       "Git",
       "VS Code",
-      "Docker",
-      "Merise",
       "Figma",
+      "Power BI",
+      "Excel",
     ],
-    color: "#e8a045",
   },
 ];
 
 export default function Skills() {
-  const [hovered, setHovered] = useState<number | null>(null);
-
   return (
     <section
       id="skills"
-      className="py-28 px-6 max-w-6xl mx-auto"
+      className=" bg-black text-white overflow-hidden relative py-28 px-6"
     >
-      <p
-        className="text-xs font-semibold tracking-widest mb-2"
-        style={{
-          color: "#7c6af7",
-          letterSpacing: "0.18em",
-        }}
-      >
-        COMPÉTENCES
-      </p>
+      <div className="max-w-7xl mx-auto">
 
-      <h2
-        className="font-black mb-14"
-        style={{
-          fontSize: "clamp(2rem, 5vw, 3rem)",
-          letterSpacing: "-0.03em",
-          color: "#e8e6f0",
-        }}
-      >
-        Ce que je maîtrise
-      </h2>
+        <p className="uppercase tracking-[0.35em] text-sm text-teal-500 font-semibold">
+          Compétences
+        </p>
+                    {/* Glow */}
+      <div className="absolute top-56 left-[35%] w-5 h-5 rounded-full bg-cyan-400 blur-sm shadow-[0_0_30px_#00e5ff]" />
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        {categories.map((cat, i) => {
-          const isHovered = hovered === i;
+        <h2 className="text-6xl font-black mt-5 mb-16 text-white">
+          Ce que je maîtrise
+        </h2>
 
-          return (
+        <div className="grid lg:grid-cols-2 xl:grid-cols-4 gap-7">
+
+          {categories.map((cat) => (
             <div
               key={cat.title}
-              onMouseEnter={() => setHovered(i)}
-              onMouseLeave={() => setHovered(null)}
-              className="relative rounded-3xl p-[2px] transition-all duration-500"
-              style={{
-                background: isHovered
-                  ? `linear-gradient(
-                      135deg,
-                      ${cat.color},
-                      #ffffff50,
-                      ${cat.color}
-                    )`
-                  : `linear-gradient(
-                      135deg,
-                      ${cat.color}80,
-                      transparent,
-                      ${cat.color}50
-                    )`,
-                boxShadow: isHovered
-                  ? `0 0 30px ${cat.color}30`
-                  : "none",
-                transform: isHovered
-                  ? "translateY(-6px)"
-                  : "translateY(0)",
-              }}
+              className="
+              rounded-[28px]
+              border
+              border-cyan-400
+              bg-black
+              p-8
+              transition-all
+              duration-300
+              hover:border-teal-500
+              hover:-translate-y-1
+              "
             >
-              {/* Deuxième bordure dégradée */}
-              <div
-                className="rounded-[22px] p-[1px] h-full"
-                style={{
-                  background: isHovered
-                    ? `linear-gradient(
-                        225deg,
-                        ${cat.color},
-                        transparent,
-                        ${cat.color}
-                      )`
-                    : `linear-gradient(
-                        225deg,
-                        ${cat.color}60,
-                        transparent,
-                        ${cat.color}30
-                      )`,
-                }}
-              >
-                {/* Contenu */}
-                <div
-                  className="relative rounded-[20px] p-6 h-full overflow-hidden"
-                  style={{
-                    background: "#0f0f1a",
-                  }}
-                >
-                  {/* Lueur */}
-                  <div
-                    className="absolute inset-0 pointer-events-none transition-opacity duration-500"
-                    style={{
-                      background: `radial-gradient(
-                        circle at top left,
-                        ${cat.color}20 0%,
-                        transparent 70%
-                      )`,
-                      opacity: isHovered ? 1 : 0,
-                    }}
-                  />
+              <div className="flex justify-between items-center mb-10">
 
-                  {/* Icône */}
-                  <div
-                    className="relative flex items-center justify-center text-2xl mb-5 rounded-2xl transition-all duration-300"
-                    style={{
-                      width: "52px",
-                      height: "52px",
-                      background: `${cat.color}15`,
-                      border: `1px solid ${cat.color}40`,
-                      boxShadow: isHovered
-                        ? `0 0 20px ${cat.color}30`
-                        : "none",
-                    }}
+                <span className="text-xs tracking-[0.3em] text-teal-500 font-semibold">
+                  {cat.id}
+                </span>
+
+                <span className="text-xs tracking-[0.25em] text-neutral-500">
+                  {cat.stars}
+                </span>
+
+              </div>
+
+              <h3 className="text-4xl font-bold text-gray-500 mb-8">
+                {cat.title}
+              </h3>
+
+              <div className="flex flex-wrap gap-3">
+
+                {cat.skills.map((skill) => (
+
+                  <span
+                    key={skill}
+                    className="
+                    px-4
+                    py-2
+                    rounded-full
+                    border
+                    border-[#DDD8D2]
+                    text-sm
+                    tracking-[0.12em]
+                    uppercase
+                    text-neutral-700
+                    transition
+                    hover:bg-teal-500
+                    hover:text-white
+                    hover:border-teal-500
+                    "
                   >
-                    {cat.icon}
-                  </div>
+                    {skill}
+                  </span>
 
-                  {/* Titre */}
-                  <h3
-                    className="relative font-bold mb-5 text-base transition-colors duration-300"
-                    style={{
-                      color: isHovered
-                        ? cat.color
-                        : `${cat.color}cc`,
-                    }}
-                  >
-                    {cat.title}
-                  </h3>
+                ))}
 
-                  {/* Compétences */}
-                  <ul className="relative space-y-3">
-                    {cat.skills.map((skill, j) => (
-                      <li
-                        key={skill}
-                        className="flex items-center gap-3 text-sm transition-all duration-300"
-                        style={{
-                          color: isHovered
-                            ? "#d7d5e3"
-                            : "#7a7690",
-                          transitionDelay: `${j * 40}ms`,
-                        }}
-                      >
-                        <span
-                          style={{
-                            width: "6px",
-                            height: "6px",
-                            borderRadius: "50%",
-                            background: isHovered
-                              ? cat.color
-                              : `${cat.color}70`,
-                            boxShadow: isHovered
-                              ? `0 0 8px ${cat.color}`
-                              : "none",
-                          }}
-                        />
-
-                        {skill}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
               </div>
             </div>
-          );
-        })}
+          ))}
+
+        </div>
+
       </div>
     </section>
   );

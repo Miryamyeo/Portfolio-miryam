@@ -32,7 +32,7 @@ export default function Navbar() {
         borderBottom: scrolled ? "1px solid #2a2840" : "none",
       }}
     >
-      <span className="font-black text-lg tracking-tight" style={{ color: "#a89cf8" }}>MY.</span>
+      <span className="font-black text-cyan-400 text-lg tracking-tight">MY.</span>
 
       {/* Desktop */}
       <ul className="hidden md:flex gap-8 list-none">
