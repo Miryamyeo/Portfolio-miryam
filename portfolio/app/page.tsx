@@ -7,6 +7,7 @@ import Skills from "./components/Skills";
 import Projects from "./components/Projects";
 import Contact from "./components/Contact";
 import Navbar from "./components/Navbar";
+import Parcours from "./components/Parcours";
 
 export default function Home() {
   const [loading, setLoading] = useState(true);
@@ -20,6 +21,7 @@ export default function Home() {
           <Navbar/>
           <Hero />
           <Skills />
+          <Parcours />
           <Projects />
           <Contact />
         </main>
