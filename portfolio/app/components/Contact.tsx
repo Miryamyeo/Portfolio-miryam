@@ -4,7 +4,7 @@ import Image from "next/image";
 import { FaInstagram, FaLinkedinIn, FaBehance } from "react-icons/fa";
 import { ChevronUp } from "lucide-react";
 
-export default function ContactPage() {
+export default function Contact() {
   return (
     <main className="min-h-screen bg-black text-white overflow-hidden relative">
 

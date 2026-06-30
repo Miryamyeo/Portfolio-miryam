@@ -4,8 +4,9 @@ import { useState, useEffect } from "react";
 const links = [
   { label: "À propos", id: "about" },
   { label: "Compétences", id: "skills" },
+  { label: "Parcours", id: "parcours" },
   { label: "Projets", id: "projects" },
-  { label: "Contact", id: "contact" },
+  { label: "Contact", id: "ContactPage" },
 ];
 
 export default function Navbar() {
