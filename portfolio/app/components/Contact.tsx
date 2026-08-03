@@ -39,9 +39,9 @@ export default function Contact() {
           </h2>
 
           <p className="text-zinc-300 text-lg leading-9">
-            Si vous avez un projet ou des besoins en Web Design,
-            Direction Artistique ou encore en Motion Design,
-            n'hésitez pas à me contacter !
+            Si vous avez un projet ou un besoin en développement web (front-end ou back-end) ou en web design,
+            n'hésitez pas à me contacter. Ce sera un plaisir d'échanger avec vous et de contribuer à la réussite de votre projet.
+
           </p>
 
           <p className="text-zinc-300 text-lg leading-9 mt-8">
