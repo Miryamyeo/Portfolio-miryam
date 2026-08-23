@@ -209,7 +209,7 @@ export default function Hero() {
           <div className="h-px w-8" style={{ background: "#00e5c3" }} />
           <TypeAnimation
             sequence={[
-              "Développeuse Full Stack", 2000,
+              "Développeuse Web & Mobile", 2000,
               "React & Next.js", 2000,
               "React Native", 2000,
               "Laravel & NestJS", 2000,
@@ -225,14 +225,13 @@ export default function Hero() {
         <p
           className="mb-8 leading-relaxed text-white max-w-sm text-sm md:text-base"
         >
-          Étudiante Epitech & UVCI (promo 2026), je construis des apps web
-          et mobiles qui résolvent de vrais problèmes — basée à Abidjan.
+          Développeuse passionnée, je conçois des applications web et mobiles pensées pour résoudre des problèmes réels et créer des expériences utiles — basée à Abidjan.
         </p>
 
         {/* CTA */}
         <div className="flex flex-wrap gap-4 items-center">
           <button
-            onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
+            onClick={() => document.getElementById("Contact")?.scrollIntoView({ behavior: "smooth" })}
             className="flex items-center gap-3 px-6 py-3 rounded-full font-semibold text-sm transition-all duration-200 hover:gap-4"
             style={{
               background: "#00e5c3",
@@ -270,14 +269,6 @@ export default function Hero() {
             Voir mes projets
           </button>
         </div>
-      </div>
-
-      {/* ── Label coin ── */}
-      <div
-        className="absolute top-24 right-8 text-xs font-semibold tracking-widest"
-        style={{ color: "#1a2e2c" }}
-      >
-        DARK <span className="text-cyan-400">/ MODE</span>
       </div>
     </section>
   );

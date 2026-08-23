@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Miryam Yeo — Développeuse Full Stack",
+  title: "Miryam  — Développeuse Full Stack",
   description: "Portfolio de Miryam Yeo Canidanan, développeuse full stack basée à Abidjan.",
 };
 
