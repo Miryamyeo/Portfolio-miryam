@@ -7,6 +7,7 @@ const links = [
   { label: "Parcours", id: "parcours" },
   { label: "Projets", id: "projects" },
   { label: "Contact", id: "ContactPage" },
+  { label: "CV", id: "" },
 ];
 
 export default function Navbar() {

@@ -232,20 +232,19 @@ export default function Hero() {
         <div className="flex flex-wrap gap-4 items-center">
           <button
             onClick={() => document.getElementById("Contact")?.scrollIntoView({ behavior: "smooth" })}
-            className="flex items-center gap-3 px-6 py-3 rounded-full font-semibold text-sm transition-all duration-200 hover:gap-4"
+            className=" bg-cyan-400 flex items-center gap-3 px-6 py-3 rounded-full font-semibold text-sm transition-all duration-200 hover:gap-4"
             style={{
-              background: "#00e5c3",
               color: "#000",
               border: "none",
               cursor: "pointer",
               boxShadow: "0 0 24px rgba(0,229,195,0.35)",
             }}
             onMouseEnter={e => {
-              e.currentTarget.style.background = "#00fff3";
+              e.currentTarget.style.background = "#22d3ee";
               e.currentTarget.style.boxShadow = "0 0 40px rgba(0,229,195,0.6)";
             }}
             onMouseLeave={e => {
-              e.currentTarget.style.background = "#00e5c3";
+              e.currentTarget.style.background = "#22d3ee";
               e.currentTarget.style.boxShadow = "0 0 24px rgba(0,229,195,0.35)";
             }}
           >
@@ -263,8 +262,8 @@ export default function Hero() {
               textDecoration: "underline",
               textUnderlineOffset: "4px",
             }}
-            onMouseEnter={e => (e.currentTarget.style.color = "#00e5c3")}
-            onMouseLeave={e => (e.currentTarget.style.color = "#3a5552")}
+            onMouseEnter={e => (e.currentTarget.style.color = "#22d3ee")}
+            onMouseLeave={e => (e.currentTarget.style.color = "#22d3ee")}
           >
             Voir mes projets
           </button>
